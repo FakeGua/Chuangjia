@@ -41,7 +41,7 @@
                 method: 'get'
             }).then((result) => {
                 console.log(result);
-                this.houses = result.data.functions[1].house;
+                this.houses = result.data.functions[0].house;
             }).catch((err) => {
                 console.log(err);
             });
