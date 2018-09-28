@@ -1,7 +1,7 @@
 <template>
     <router-link :to="'/good/'+house.id">
         <div class="hot_row" style="padding:20px 0;display:flex">
-            <img src="https://dummyimage.com/150x100" alt="" style="">
+            <img :src="house.cover" alt="" style="border-radius: 5px">
             <div class="hot_col" style="padding-left:15px">
                 <div v-text="house.title" style="font-size:15px;font-weight:bold"></div>
                 <div style="font-size:10px">{{house.huxing}}/{{house.area}}m²</div>

@@ -77,20 +77,11 @@
     components: {
       good
     },
-    methods: {
-      onSearch() {
-  
-      },
-      onCancel() {
-  
-      }
-    },
     created() {
       axios("https://www.easy-mock.com/mock/5b9dee98cea0cb6b8af5df0c/chuangjia/data", {
         method: 'get'
       }).then((result) => {
         console.log(result);
-        this.functions = result.data.functions;
         for (let i = 0; i < 2; i++) {
           for (let j in result.data.functions[i].house)
             this.houses.push(result.data.functions[i].house[j]);

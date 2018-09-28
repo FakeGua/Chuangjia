@@ -1,13 +1,13 @@
 <template>
 <div>
-    <van-nav-bar title="Safe创家" left-text="返回" right-text="按钮" left-arrow @click-left="onClickLeft" @click-right="onClickRight" />
+    <van-nav-bar title="Safe创家" left-text="返回" left-arrow @click-left="onClickLeft" />
     <van-search id="search" v-model="value" placeholder="请输入小区/地铁/商圈" show-action @search="onSearch" @cancel="onCancel" />
     <div v-show="results.length == 0 && value" style="padding:50px;font-size:20px;color:lightgray">无结果，换个词试试～</div>
     <div v-show="!value" class="history">
         <div class="history_header" style="display: flex;
-        justify-content: space-between;
-        font-size: 13px;
-        color: darkgray;">
+            justify-content: space-between;
+            font-size: 13px;
+            color: darkgray;">
             <div>搜索历史</div>
             <div @click="onClearHistorys">
                 <van-icon name="clear" /> 全部清除</div>
@@ -15,8 +15,8 @@
         <hr>
         <div v-for="history in historys" :key="history.id" @click="value = history">
             <div class="history_item" style=" display: flex;
-            justify-content: space-between;
-            padding: 20px 0;">
+                justify-content: space-between;
+                padding: 20px 0;">
                 <div>{{ history }}</div>
                 <van-icon name="clear" @click.stop="onClearHistoryItem(history)" style="color:darkgray" />
             </div>
@@ -70,9 +70,6 @@
         methods: {
             onClickLeft() {
                 this.$router.go(-1);
-            },
-            onClickRight() {
-                this.$toast('按钮');
             },
             onSearch() {
                 if (this.value) {

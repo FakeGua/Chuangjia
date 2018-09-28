@@ -36,6 +36,12 @@ export default new Router({
         import('./views/Good.vue')
     },
     {
+      path: '/sale',
+      name: 'sale',
+      component: () =>
+        import('./views/Sale.vue')
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
