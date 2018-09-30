@@ -9,6 +9,11 @@ body,html {
   margin: 0;
 }
 
+input,
+textarea {
+    font-size: 16px;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
