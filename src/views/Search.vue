@@ -1,7 +1,7 @@
 <template>
 <div>
     <van-nav-bar title="Safe创家" left-text="返回" left-arrow @click-left="onClickLeft" />
-    <van-search id="search" v-model="value" placeholder="请输入小区/地铁/商圈" show-action @search="onSearch" @cancel="onCancel" />
+    <van-search id="search" v-model="value" placeholder="请输入小区/地铁/商圈" @search="onSearch"/>
     <div v-show="results.length == 0 && value" style="padding:50px;font-size:20px;color:lightgray">无结果，换个词试试～</div>
     <div v-show="!value" class="history">
         <div class="history_header" style="display: flex;
@@ -80,9 +80,6 @@
                         }
                     }
                 }
-            },
-            onCancel() {
-                this.value = '';
             },
             onClearHistorys() {
                 localStorage.removeItem('historys');

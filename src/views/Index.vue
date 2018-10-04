@@ -7,11 +7,11 @@
         <br> Safe创家
       </div>
       <span class="position">
-              <van-icon class="icon_position" size="10px" color="" name="location" /> 天津
-            </span>
+                  <van-icon class="icon_position" size="10px" color="" name="location" /> 天津
+                </span>
     </div>
     <form action="/">
-      <van-search class="search_box" v-model="search_word" placeholder="输入要找的小区开始VR看房～" background="#fff" @click="$router.push('/search')"/>
+      <van-search class="search_box" v-model="search_word" placeholder="输入要找的小区开始VR看房～" background="#fff" @click="$router.push('/search')" />
     </form>
   
     <!-- 分类 -->
@@ -29,12 +29,14 @@
       <div class="hot_header">
         近期好房
       </div>
-      <div class="hot_body">
-        <div v-for="house in houses" :key="house.id">
-          <good :house="house"></good>
-          <hr style="border: 0.5px solid whitesmoke">
+      <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+        <div class="hot_body">
+          <div v-for="house in houses" :key="house.id">
+            <good :house="house"></good>
+            <hr style="border: 0.5px solid whitesmoke">
+          </div>
         </div>
-      </div>
+      </van-pull-refresh>
     </div>
     <div style="font-size:10px;color:gainsboro;padding:20px">我们是有底线哒～</div>
   </div>
@@ -54,24 +56,24 @@
         categorys: [{
             name: "整租",
             icon: require("../assets/home.png"),
-            url:'/home'
+            url: '/home'
           }, {
             name: "合租",
             icon: require("../assets/room.png"),
-            url:'/room'
+            url: '/room'
           },
           {
             name: "找房",
             icon: require("../assets/search.png"),
-            url:'/search'
+            url: '/search'
           },
           {
             name: "出租",
             icon: require("../assets/sale.png"),
-            url:'/sale'
+            url: '/sale'
           }
         ],
-  
+        isLoading: false
       }
     },
     components: {
@@ -81,7 +83,6 @@
       axios("https://www.easy-mock.com/mock/5b9dee98cea0cb6b8af5df0c/chuangjia/data", {
         method: 'get'
       }).then((result) => {
-        console.log(result);
         for (let i = 0; i < 2; i++) {
           for (let j in result.data.functions[i].house)
             this.houses.push(result.data.functions[i].house[j]);
@@ -90,6 +91,14 @@
         console.log(err);
       });
     },
+    methods: {
+      onRefresh() {
+        setTimeout(() => {
+          this.$toast.success({message:'刷新成功',duration:1000});
+          this.isLoading = false;
+        }, 500);
+      }
+    }
   }
 </script>
 
